@@ -8,6 +8,9 @@ class SecondScreen extends Component {
                <Text style={{
                    fontSize:30
                }}>{this.props.route.params.title}</Text>
+               <Text>
+                   Tech Description
+               </Text>
            </View>
        );
    }

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, Text, Button, Alert, Switch, TextInput, Image, Platform, TouchableOpacity } from 'react-native'
+import { View, SafeAreaView, Text, Button, Alert, 
+    Switch, TextInput, Image, Platform, TouchableOpacity,
+    ScrollView,
+ } from 'react-native'
 
 import * as Linking from 'expo-linking';
 
@@ -19,49 +22,65 @@ class HomeScreen extends Component {
 
    render() {
 
+    let tech_array = [
+        {
+            title: 'React',
+        },
+        {
+            title: 'React Native',
+        },
+        {
+            title: 'Yarn',
+        },
+        {
+            title: 'Yarn',
+        },
+        {
+            title: 'Yarn',
+        },
+        {
+            title: 'Yarn',
+        },
+        {
+            title: 'Yarn',
+        },
+        {
+            title: 'Yarn',
+        },
+        {
+            title: 'Yarn',
+        },
+    ]
+
     let { text, input } = this.state;
 
        return (
+        <ScrollView>
         <SafeAreaView style={styles.container}>
 
-        <Cell 
+        {
+          tech_array.map((item, idx) => {
+            return (
+              <Cell 
+  
+                title={item.title} 
+                
+                onPress={()=>{
         
-        title={"React"} 
+                  console.log('react');
+                  this.props.navigation.navigate('second',{
+                      title: item.title,
+                  });
         
-        onPress={()=>{
+                }} 
+              
+              />     
+            )
+          })
+        }
 
-          console.log('react');
-          this.props.navigation.navigate('second',{
-              title: 'react',
-          });
-
-        }} 
         
-        />
 
-        <Cell 
-        title={"React Native"} 
-        onPress={()=>{
-
-          console.log('React Native');
-          this.props.navigation.navigate('second',{
-            title: 'react native',
-            });
-
-        }} 
-        />
-
-        <Cell
-        title={"Yarn"} 
-        onPress={()=>{
-
-          console.log('Yarn');
-          this.props.navigation.navigate('second',{
-            title: 'yarn',
-        });
-
-        }} 
-         />
 
         <Image
           style={{width:40, height: 40}}
@@ -137,14 +156,15 @@ class HomeScreen extends Component {
 
         />
       </SafeAreaView>
-       );
+      </ScrollView>
+    );
    }
 }
 
 const styles = {
     container: {
       flex: 1, 
-      backgroundColor:'skyblue',
+      backgroundColor:'lightGrey',
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection:'column'

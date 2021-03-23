@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Dimensions } from 'react-native'
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 class Cell extends Component {
    render() {
@@ -32,10 +35,10 @@ const styles = {
        flexDirection: 'row',
        justifyContent: 'flex-start',
        alignItems: 'center',
-       marginBottom: 10,
+       marginBottom: 2,
        backgroundColor: 'white',
        padding: 12,
-       width: 300,
+       width: windowWidth,
     //    flex: 1,
    },
 };
