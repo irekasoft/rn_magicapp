@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, Text, Button, Alert, 
     Switch, TextInput, Image, Platform, TouchableOpacity,
-    ScrollView, Animated
+    ScrollView, Animated, Easing,
  } from 'react-native'
 
 import * as Linking from 'expo-linking';
@@ -29,10 +29,14 @@ class HomeScreen extends Component {
         duration: 5000
       }).start();
 
+      Animated.loop(
+
       Animated.timing(this.state.rotateAnim, {
         toValue: 180,
-        duration: 1000
-      }).start();
+        duration: 50000,
+        // useNativeDriver: true,
+        // easing: Easing.linear,
+      })).start();
 
     }
 
@@ -68,10 +72,8 @@ class HomeScreen extends Component {
             return (
               <Cell 
   
-                title={item.title} 
-                
-                onPress={()=>{
-        
+                title={item.title}                 
+                onPress={()=>{        
                   console.log('react');
                   this.props.navigation.navigate('second',{
                       title: item.title,
@@ -82,32 +84,25 @@ class HomeScreen extends Component {
               />     
             )
           })
-        }
-
-        
+        }        
 
         <Animated.View
           style={[
             {
-              opacity: this.state.fadeAnim 
+              transform: [{ rotate: this.state.rotateAnim }],
             }
           ]}
         >
         <Image
           style={[{            
-            width:40, height: 40,            
-          },
-          {
-            transform: [{ rotate: this.state.rotateAnim + 'deg' }],
-          }
-          ]
-          }
+              width:40, height: 40,            
+            },]}
           source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
         />
+        </Animated.View>
+
 
         <Text style={{fontSize: 40}} >{input}</Text>
-        </Animated.View>  
-        
         
         <Text style={{fontSize: 40}} >{text}</Text>
 
