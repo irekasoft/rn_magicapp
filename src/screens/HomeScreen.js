@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, Text, Button, Alert, 
     Switch, TextInput, Image, Platform, TouchableOpacity,
-    ScrollView,
+    ScrollView, Animated
  } from 'react-native'
 
 import * as Linking from 'expo-linking';
@@ -17,8 +17,24 @@ class HomeScreen extends Component {
             text: '',
             input: '',
             input2: '',
+            fadeAnim: new Animated.Value(1),
+            rotateAnim: new Animated.Value(0),
         }
     }  
+
+    componentDidMount(){
+
+      Animated.timing(this.state.fadeAnim, {
+        toValue: 0,
+        duration: 5000
+      }).start();
+
+      Animated.timing(this.state.rotateAnim, {
+        toValue: 180,
+        duration: 1000
+      }).start();
+
+    }
 
    render() {
 
@@ -29,27 +45,6 @@ class HomeScreen extends Component {
         {
             title: 'React Native',
         },
-        {
-            title: 'Yarn',
-        },
-        {
-            title: 'Yarn',
-        },
-        {
-            title: 'Yarn',
-        },
-        {
-            title: 'Yarn',
-        },
-        {
-            title: 'Yarn',
-        },
-        {
-            title: 'Yarn',
-        },
-        {
-            title: 'Yarn',
-        },
     ]
 
     let { text, input } = this.state;
@@ -57,6 +52,16 @@ class HomeScreen extends Component {
        return (
         <ScrollView>
         <SafeAreaView style={styles.container}>
+
+        <Animated.View
+          style={[
+            {
+              opacity: this.state.fadeAnim 
+            }
+          ]}
+        >
+          <Text style={{fontSize:30}}>Fading View!</Text>
+        </Animated.View>  
 
         {
           tech_array.map((item, idx) => {
@@ -81,13 +86,29 @@ class HomeScreen extends Component {
 
         
 
-
+        <Animated.View
+          style={[
+            {
+              opacity: this.state.fadeAnim 
+            }
+          ]}
+        >
         <Image
-          style={{width:40, height: 40}}
+          style={[{            
+            width:40, height: 40,            
+          },
+          {
+            transform: [{ rotate: this.state.rotateAnim + 'deg' }],
+          }
+          ]
+          }
           source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
         />
-        
+
         <Text style={{fontSize: 40}} >{input}</Text>
+        </Animated.View>  
+        
+        
         <Text style={{fontSize: 40}} >{text}</Text>
 
         <TouchableOpacity
