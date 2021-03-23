@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Button, Alert, Switch, TextInput, Image } from 'react-native'
+import { View, SafeAreaView, Text, Button, Alert, Switch, TextInput, Image, Platform } from 'react-native'
 
 class App extends Component {
 
@@ -7,7 +7,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      text: 'Back at 1pm ',
+      text: Platform.OS,
 
     }
 
@@ -19,22 +19,14 @@ class App extends Component {
     let { text } = this.state;
 
     return (
-      <View style={styles.container}>
-        <Text style={{fontSize: 150}} >{text}</Text>
-        <Button title="Hello" 
+      <SafeAreaView style={styles.container}>
 
-          onPress={()=>{
-            console.log('hi');
-            
-            Alert.alert(text);
-
-          }}
-
+        <Image
+          style={{width:40, height: 40}}
+          source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
         />
-
-      <Switch
-        
-      />  
+        <Text style={{fontSize: 40}} >{text}</Text>
+        <Text style={{fontSize: 20}}>Repo: https://github.com/irekasoft/rn_magicapp</Text>
 
       <TextInput
         style={{
@@ -58,13 +50,24 @@ class App extends Component {
         placeholder="useless placeholder"
         keyboardType="numeric"
       />
+       <Button 
+        title="Hello"
+        onPress={()=>{
+          console.log('hi');
 
-      <Image
-          style={{width:140, height: 140}}
-          source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+          if (Platform.OS === 'web'){
+            alert(text);
+
+          }else{
+
+            Alert.alert(text);
+
+          }
+          
+        }}
+
         />
-
-      </View>
+      </SafeAreaView>
     )
 
   }
@@ -73,7 +76,8 @@ class App extends Component {
 
 const styles = {
   container: {
-    flex: 1, 
+    // flex: 1, 
+    backgroundColor:'skyblue',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection:'column'
