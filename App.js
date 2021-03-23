@@ -7,16 +7,13 @@ class App extends Component {
 
   constructor(props){
     super(props);
-
     this.state = {
-      text: Platform.OS,
+      platform: Platform.OS,
+      text: '',
       input: '',
       input2: '',
-
     }
-
   }  
-
 
   render() {
 
@@ -37,13 +34,25 @@ class App extends Component {
           activeOpacity={0.8}
           onPress={()=>{
             console.log('aaa');
-
             Linking.openURL('https://github.com/irekasoft/rn_magicapp');
-
           }}
         >
         <Text style={{fontSize: 20}}>Repo: https://github.com/irekasoft/rn_magicapp</Text>
         </TouchableOpacity>
+
+        <Button 
+        title="Fill In"
+        onPress={()=>{
+          console.log('hi');
+
+          this.setState({
+            text: "I just fill in the text input"
+          })
+
+          
+        }}
+
+        />
 
       <TextInput
         style={{
