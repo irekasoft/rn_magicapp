@@ -1,0 +1,1 @@
+## React Native app develoment with MaGIC
