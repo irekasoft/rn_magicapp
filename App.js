@@ -3,6 +3,8 @@ import { View, SafeAreaView, Text, Button, Alert, Switch, TextInput, Image, Plat
 
 import * as Linking from 'expo-linking';
 
+import Cell from './src/components/Cell'
+
 class App extends Component {
 
   constructor(props){
@@ -21,6 +23,36 @@ class App extends Component {
 
     return (
       <SafeAreaView style={styles.container}>
+
+        <Cell 
+        
+        title={"React"} 
+        
+        onPress={()=>{
+
+          console.log('react');
+
+        }} 
+        
+        />
+
+        <Cell 
+        title={"React Native"} 
+        onPress={()=>{
+
+          console.log('React Native');
+
+        }} 
+        />
+
+        <Cell
+        title={"Yarn"} 
+        onPress={()=>{
+
+          console.log('Yarn');
+
+        }} 
+         />
 
         <Image
           style={{width:40, height: 40}}
