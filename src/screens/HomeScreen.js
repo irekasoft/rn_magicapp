@@ -31,9 +31,9 @@ class HomeScreen extends Component {
         onPress={()=>{
 
           console.log('react');
-
-          this.props.navigation.navigate('second');
-          
+          this.props.navigation.navigate('second',{
+              title: 'react',
+          });
 
         }} 
         
@@ -44,6 +44,9 @@ class HomeScreen extends Component {
         onPress={()=>{
 
           console.log('React Native');
+          this.props.navigation.navigate('second',{
+            title: 'react native',
+            });
 
         }} 
         />
@@ -53,6 +56,9 @@ class HomeScreen extends Component {
         onPress={()=>{
 
           console.log('Yarn');
+          this.props.navigation.navigate('second',{
+            title: 'yarn',
+        });
 
         }} 
          />

@@ -5,7 +5,9 @@ class SecondScreen extends Component {
    render() {
        return (
            <View style={styles.container}>
-               <Text>SecondScreen</Text>
+               <Text style={{
+                   fontSize:30
+               }}>{this.props.route.params.title}</Text>
            </View>
        );
    }
