@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, Text, Button, Alert, Switch, TextInput, Image, Platform } from 'react-native'
+import { View, SafeAreaView, Text, Button, Alert, Switch, TextInput, Image, Platform, TouchableOpacity } from 'react-native'
+
+import * as Linking from 'expo-linking';
 
 class App extends Component {
 
@@ -8,6 +10,8 @@ class App extends Component {
 
     this.state = {
       text: Platform.OS,
+      input: '',
+      input2: '',
 
     }
 
@@ -16,7 +20,7 @@ class App extends Component {
 
   render() {
 
-    let { text } = this.state;
+    let { text, input } = this.state;
 
     return (
       <SafeAreaView style={styles.container}>
@@ -25,8 +29,21 @@ class App extends Component {
           style={{width:40, height: 40}}
           source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
         />
+        
+        <Text style={{fontSize: 40}} >{input}</Text>
         <Text style={{fontSize: 40}} >{text}</Text>
+
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={()=>{
+            console.log('aaa');
+
+            Linking.openURL('https://github.com/irekasoft/rn_magicapp');
+
+          }}
+        >
         <Text style={{fontSize: 20}}>Repo: https://github.com/irekasoft/rn_magicapp</Text>
+        </TouchableOpacity>
 
       <TextInput
         style={{
@@ -43,6 +60,8 @@ class App extends Component {
 
             this.setState({
               text: text,
+              input: text,
+              input2: text,
             })
 
           }
@@ -76,7 +95,7 @@ class App extends Component {
 
 const styles = {
   container: {
-    // flex: 1, 
+    flex: 1, 
     backgroundColor:'skyblue',
     justifyContent: 'center',
     alignItems: 'center',
